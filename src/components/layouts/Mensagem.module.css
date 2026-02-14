@@ -1,0 +1,192 @@
+.mensagem_container{
+    width: 90%;
+    margin: 3rem auto;
+    text-align: center;
+    padding-top: 0;
+    min-height: auto;
+    position: relative;
+}
+
+.mensagem_container h1{
+    color: #dc143c;
+    font-size: 2.2em;
+    margin-bottom: 1rem;
+}
+
+/* Envelope Wrapper */
+.envelope_wrapper {
+    perspective: 1000px;
+    cursor: pointer;
+    position: relative;
+    margin: 0 auto;
+    max-width: 400px;
+    padding-top: 0;
+    margin-bottom: 1rem;
+}
+
+.click_hint {
+    text-align: center;
+    font-size: 0.9em;
+    color: #dc143c;
+    margin-top: 0.8rem;
+    opacity: 0.8;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+/* Envelope Container */
+.envelope {
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    height: 220px;
+    margin: 0 auto;
+    background: #f5f5dc;
+    border-radius: 4px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s ease;
+}
+
+/* Envelope Flap (aba triangular) */
+.flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 175px solid transparent;
+    border-right: 175px solid transparent;
+    border-top: 120px solid #dc143c;
+    transform-origin: top center;
+    transition: transform 0.6s ease;
+    z-index: 3;
+}
+
+.envelope.open .flap {
+    transform: rotateX(180deg);
+}
+
+/* Envelope Pocket (parte de trás) */
+.pocket {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background: #f5f5dc;
+    border: 2px solid #d4af37;
+    border-top: none;
+    z-index: 1;
+}
+
+.pocket::before {
+    content: '💝';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3em;
+    opacity: 0.3;
+}
+
+/* Letter (carta) */
+.letter {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    width: 90%;
+    max-width: 320px;
+    background: #fff;
+    border: 2px solid #dc143c;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    opacity: 0;
+    z-index: 100;
+}
+
+.letter.show {
+    transform: translateX(-50%) translateY(-320px);
+    opacity: 1;
+}
+
+.letter_content {
+    text-align: left;
+    color: #333;
+    line-height: 1.6;
+}
+
+.letter_content p {
+    margin-bottom: 1rem;
+    font-size: 0.95em;
+    white-space: pre-line;
+}
+
+.first_line {
+    font-weight: bold;
+    text-align: center;
+    color: #dc143c;
+    font-size: 1.1em;
+    margin-bottom: 1.5rem !important;
+}
+
+.signature {
+    margin-top: 1.5rem;
+    font-style: italic;
+    color: #666;
+}
+
+.signature_name {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.8em;
+    color: #dc143c;
+    margin-top: 0.5rem;
+    text-align: right;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .mensagem_container {
+        min-height: auto;
+        margin: 2rem auto;
+    }
+    
+    .mensagem_container h1{
+        font-size: 1.8em;
+        margin-bottom: 0.8rem;
+    }
+    
+    .envelope_wrapper {
+        padding-top: 0;
+    }
+    
+    .envelope {
+        max-width: 300px;
+        height: 180px;
+    }
+    
+    .flap {
+        border-left: 150px solid transparent;
+        border-right: 150px solid transparent;
+        border-top: 100px solid #dc143c;
+    }
+    
+    .letter {
+        max-width: 280px;
+        padding: 1rem;
+    }
+    
+    .letter.show {
+        transform: translateX(-50%) translateY(-300px);
+    }
+    
+    .letter_content p {
+        font-size: 0.85em;
+    }
+}
